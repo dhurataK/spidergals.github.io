@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<title>SpiderGals Blog</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- w3-content defines a container for fixed size centered content,
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1400px">
+
+<!-- Header -->
+<header class="w3-container w3-center w3-padding-32">
+  <h1>SpiderGals <b>BLOG</b></h1>
+  <p>Welcome to our CoderGals Hackathon blog </p>
+</header>
+
+<!-- Grid -->
+<div class="w3-row">
+
+<!-- Blog entries -->
+<div class="w3-col l8 s12">
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="images/coderGals.JPG" alt="Nature" style="width:100%">
+    <div class="w3-container w3-padding-large">
+      <h3><b>Scraping FX exchange rates from public websites</b></h3>
+      <h5>Storing the scapped data into MongoDB database, <span class="w3-opacity">August, 19 2017</span></h5>
+    </div>
+
+    <div class="w3-container w3-padding-large">
+    <p>For this challenge we decided to use a framework from Python called Scrapy that grabs the FX exchange rates the currency, last time when were updated, the highest deal and the lowest. Scraped data should then be stored in MongoDB, for this procedure we will use PyMongo which is a package from python for connecting MongoDB with Python.</p>
+      <h6>Installation</h6>
+      <p>In order to scrap particular data we need the Scrapy library along with PyMongo for storing the data in MongoDB. If you’re running OSX or a flavor of Linux, install Scrapy with pip (with your virtualenv activated): </p>
+      <p><b>> $ pip install Scrapy</b></p>
+      <p>Once Scrapy is setup, install PyMongo with pip:</p>
+      <p><b>> $ pip install pymongo</b></p>
+      <hr>
+      <h6>Scrapy Project</h6>
+      <p>Start a new Scrapy project by typing in command line, This creates a number of files and folders that includes a basic boilerplate for you to get started quickly:</p>
+      <p><b>> $ scrapy startproject name_of_project</b></p>
+      <p>Scrapy uses XPath selectors to extract data from a website. In other words, we can select certain parts of the HTML data based on a given XPath. As stated in Scrapy’s <a href="https://doc.scrapy.org/en/1.0/topics/selectors.html">documentation</a>, “XPath is a language for selecting nodes in XML documents, which can also be used with HTML.”
+      Again, we basically tell Scrapy where to start looking for information based on a defined XPath. We navigate to the Reuters’ site in Chrome and find XPath selectors.
+      </p>
+      <p>We select the table:</p>
+      <p><b>table = Selector(response).xpath('//*[@id="currPairs"]')</b></p>
+      <img src="images/Picture1.png" alt=""style="width:500px; height:400px">
+      <p>And then navigate through the table rows and table cells:</p>
+      <p><b>row.xpath('tbody/tr/td/a/text()')</b></p>
+      <img src="images/Picture2.png" alt=""style="width:500px; height:400px">
+      <p>We parse the data and then we plan to use to save all of our crawled data.</p>
+      <img src="images/Picture3.png" alt=""style="width:100%">
+      <p>Open settings.py and specify the pipeline and add the database settings</p>
+      <p><b>ITEM_PIPELINES = {'stack.pipelines.MongoPipeline': 100 } <br>
+      MONGODB_SERVER = "localhost"<br>
+      MONGODB_PORT = 27017 <br>
+      MONGODB_DB = "scrapy"<br>
+      MONGODB_COLLECTION = "currencies"
+      </b></p>
+      <p>The saved json data then will be stored into MongoDB</p>
+      <img src="images/Picture4.png" alt=""style="width:500px; height:700px">
+      <p>To get up running the project you must run the command within the “stack” directory:</p>
+      <p><b>> $scrapy crawl stack</b></p>
+      <p>We run the command to make the requests and store the data in database every 60 seconds:</p>
+      <p><b>> $watch -n 60 scrapy crawl stack</b></p>
+      <div class="w3-col m4 w3-hide-small w3-right">
+          <p><span class="w3-padding-large w3-right"><a href="https://github.com/dhurataK/codergals"><button class="w3-button w3-padding-large w3-white w3-border">View on GitHub <img src="images/github-logo.png" alt=""></button></a></span></p>
+        </div>
+    </div>
+  </div>
+  <hr>
+
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+  <img src="images/presentation.JPG" alt="Norway" style="width:100%">
+    <div class="w3-container w3-padding-larg">
+      <h3><b>Scrapy Tool</b></h3>
+      <h5>Scraping FX exchange rates from the Reuters website, <span class="w3-opacity">August, 20 2017</span></h5>
+    </div>
+
+    <div class="w3-container w3-padding-large">
+      <p>Forex (FX) is the market in which currencies are traded. The data collected from the websites using scrapy could be used for different data analysis that are required by any person, business, firm or country for their financial needs. This data could be used for different visualizations using software applications that could be built specifically for this purpose.</p>
+    </div>
+  </div>
+<!-- END BLOG ENTRIES -->
+</div>
+
+<!-- Introduction menu -->
+<div class="w3-col l4">
+  <!-- About Card -->
+  <div class="w3-card-2 w3-margin w3-margin-top">
+  <img src="images/spiderGals.jpg" style="width:100%">
+    <div class="w3-container w3-white">
+      <h4><b>SpiderGals</b></h4>
+      <p>Our group was made of five girls who have a background in Computer Science.</p>
+    </div>
+  </div><hr>
+
+<hr>
+
+  <!-- Labels / tags -->
+  <div class="w3-card-2 w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Tags</h4>
+    </div>
+    <div class="w3-container w3-white">
+    <p><span class="w3-tag w3-black w3-margin-bottom">CoderGals</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Prizren</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Hackathon</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#code</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#solutions</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#hack</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#ideas</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#tech</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#innovation</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#challenge</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#weekend</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#team</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">#event</span>
+    </p>
+    </div>
+  </div>
+
+<!-- END Introduction Menu -->
+</div>
+
+<!-- END GRID -->
+</div><br>
+
+<!-- END w3-content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-dark-grey w3-padding-48 w3-large">
+  <p>Copyright © 2017, SpiderGals</p>
+</footer>
+
+</body>
+</html>
