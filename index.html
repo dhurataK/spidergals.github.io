@@ -49,10 +49,10 @@ and is wrapped around the whole page content, except for the footer in this exam
       </p>
       <p>We select the table:</p>
       <p><b>table = Selector(response).xpath('//*[@id="currPairs"]')</b></p>
-      <img src="images/Picture1.png" alt=""style="width:500px; height:400px">
+      <img src="images/Picture1.png" alt=""style="width:80%; height:400px">
       <p>And then navigate through the table rows and table cells:</p>
       <p><b>row.xpath('tbody/tr/td/a/text()')</b></p>
-      <img src="images/Picture2.png" alt=""style="width:500px; height:400px">
+      <img src="images/Picture2.png" alt=""style="width:80%; height:300px">
       <p>We parse the data and then we plan to use to save all of our crawled data.</p>
       <img src="images/Picture3.png" alt=""style="width:100%">
       <p>Open settings.py and specify the pipeline and add the database settings</p>
@@ -63,7 +63,7 @@ and is wrapped around the whole page content, except for the footer in this exam
       MONGODB_COLLECTION = "currencies"
       </b></p>
       <p>The saved json data then will be stored into MongoDB</p>
-      <img src="images/Picture4.png" alt=""style="width:500px; height:700px">
+      <img src="images/Picture4.png" alt=""style="width:80%; height:800px">
       <p>To get up running the project you must run the command within the “stack” directory:</p>
       <p><b>> $scrapy crawl stack</b></p>
       <p>We run the command to make the requests and store the data in database every 60 seconds:</p>
